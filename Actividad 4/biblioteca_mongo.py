@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 from pymongo import MongoClient, errors
 
-# ==============================
+
 # CONFIGURACIÓN DE CONEXIÓN
-# ==============================
-# Cambia estos datos según tu MongoDB local o Atlas
+# Cambia estos datos según si es MongoDB local o Atlas
 MONGO_URI = "mongodb://localhost:27017/"  # para MongoDB local
 # Ejemplo MongoDB Atlas:
 # MONGO_URI = "mongodb+srv://usuario:contrasena@cluster.mongodb.net/test?retryWrites=true&w=majority"
@@ -19,10 +17,8 @@ except errors.ConnectionFailure as e:
     print("No se pudo conectar a MongoDB:", e)
     exit(1)
 
-# ==============================
-# FUNCIONES CRUD
-# ==============================
 
+# FUNCIONES CRUD
 def agregar_libro():
     titulo = input("Título: ")
     autor = input("Autor: ")
@@ -114,10 +110,8 @@ def buscar_libros():
     except errors.PyMongoError as e:
         print("Error al buscar libros:", e)
 
-# ==============================
-# MENÚ PRINCIPAL
-# ==============================
 
+# MENÚ PRINCIPAL
 def menu():
     while True:
         print("""
