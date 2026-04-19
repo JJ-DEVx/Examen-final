@@ -20,7 +20,7 @@
         <input class="form-control mb-2" id="place" placeholder="Lugar">
         <input class="form-control mb-2" id="category" placeholder="Categoria">
 
-        <button class="btn btn-success w-100">Crear Taller</button>
+        <button class="btn btn-success w-100">Crear / Actualizar Taller</button>
     </form>
 
     <!-- TABLA -->
@@ -40,47 +40,8 @@
 
 <script>
 
-const API = "http://127.0.0.1:5000/workshops";
+const API = "http://127.0.0.1:10000/workshops";
 let editId = null;
-
-// CREAR / ACTUALIZAR
-document.getElementById("form").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const data = {
-        name: document.getElementById("name").value.trim(),
-        description: document.getElementById("description").value,
-        date: document.getElementById("date").value,
-        time: document.getElementById("time").value,
-        place: document.getElementById("place").value,
-        category: document.getElementById("category").value
-    };
-
-    if(editId === null){
-        fetch(API, {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            alert("Creado");
-            document.getElementById("form").reset();
-            cargar();
-        });
-    } else {
-        fetch(API + "/" + editId, {
-            method: "PUT",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            alert("Actualizado");
-            editId = null;
-            document.getElementById("form").reset();
-            cargar();
-        });
-    }
-});
 
 // CARGAR TABLA
 function cargar(){
@@ -106,6 +67,50 @@ function cargar(){
     });
 }
 
+// CREAR / EDITAR
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        date: document.getElementById("date").value.trim(),
+        time: document.getElementById("time").value.trim(),
+        place: document.getElementById("place").value.trim(),
+        category: document.getElementById("category").value.trim()
+    };
+
+    if(!data.name){
+        alert("El nombre es obligatorio");
+        return;
+    }
+
+    if(editId === null){
+        fetch(API, {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            alert("Taller creado");
+            document.getElementById("form").reset();
+            cargar();
+        });
+    } else {
+        fetch(API + "/" + editId, {
+            method: "PUT",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            alert("Taller actualizado");
+            editId = null;
+            document.getElementById("form").reset();
+            cargar();
+        });
+    }
+});
+
 // EDITAR
 function editar(id){
     fetch(API + "/" + id)
@@ -124,16 +129,14 @@ function editar(id){
 
 // ELIMINAR
 function eliminar(id){
-    fetch(API + "/" + id, {
-        method: "DELETE"
-    })
+    fetch(API + "/" + id, { method: "DELETE" })
     .then(() => {
-        alert("Eliminado");
+        alert("Taller eliminado");
         cargar();
     });
 }
 
-// CARGA INICIAL
+// INICIAR
 cargar();
 
 </script>

@@ -1,5 +1,0 @@
-flask
-redis
-python-dotenv
-celery
-flask-mail

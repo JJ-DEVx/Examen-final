@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:5000/workshops";
+const API = "http://127.0.0.1:10000/workshops";
 
 // Cargar talleres
 fetch(API)

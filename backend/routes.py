@@ -4,19 +4,26 @@ from database import db
 
 def init_routes(app):
 
+    # ✅ Ruta principal (para que Render no dé error)
+    @app.route('/')
+    def home():
+        return {"message": "API funcionando correctamente"}
+
+    # 🔹 Obtener todos los talleres
     @app.route('/workshops', methods=['GET'])
     def get_workshops():
         workshops = Workshop.query.all()
         return jsonify([{
             "id": w.id,
             "name": w.name,
-            "description": w.description,  # 👈 AQUI ESTA EL CAMBIO
+            "description": w.description,
             "date": w.date,
             "time": w.time,
             "place": w.place,
             "category": w.category
         } for w in workshops]), 200
 
+    # 🔹 Obtener un taller específico
     @app.route('/workshops/<int:id>', methods=['GET'])
     def get_workshop(id):
         w = Workshop.query.get_or_404(id)
@@ -30,6 +37,7 @@ def init_routes(app):
             "category": w.category
         }), 200
 
+    # 🔹 Crear taller
     @app.route('/workshops', methods=['POST'])
     def create_workshop():
         data = request.json
@@ -38,6 +46,7 @@ def init_routes(app):
         db.session.commit()
         return jsonify({"message": "Workshop creado"}), 201
 
+    # 🔹 Actualizar taller
     @app.route('/workshops/<int:id>', methods=['PUT'])
     def update_workshop(id):
         w = Workshop.query.get_or_404(id)
@@ -49,6 +58,7 @@ def init_routes(app):
         db.session.commit()
         return jsonify({"message": "Actualizado"}), 200
 
+    # 🔹 Eliminar taller
     @app.route('/workshops/<int:id>', methods=['DELETE'])
     def delete_workshop(id):
         w = Workshop.query.get_or_404(id)
@@ -56,6 +66,7 @@ def init_routes(app):
         db.session.commit()
         return jsonify({"message": "Eliminado"}), 200
 
+    # 🔹 Registrar estudiante
     @app.route('/workshops/<int:id>/register', methods=['POST'])
     def register(id):
         data = request.json
