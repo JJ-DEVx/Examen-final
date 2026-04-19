@@ -5,9 +5,9 @@ from database import db
 def init_routes(app):
 
     # ✅ Ruta principal (para que Render no dé error)
-    @app.route('/')
-    def home():
-        return {"message": "API funcionando correctamente"}
+   @app.route('/')
+def home():
+    return jsonify({"message": "API funcionando correctamente"})
 
     # 🔹 Obtener todos los talleres
     @app.route('/workshops', methods=['GET'])
