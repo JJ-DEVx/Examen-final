@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-const API = "http://127.0.0.1:10000/workshops";
+const API = "https://talleres-api-myx2.onrender.com/workshops";
 
 // Cargar talleres
 fetch(API)
