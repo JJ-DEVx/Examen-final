@@ -66,14 +66,14 @@ function cargar(){
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
-    const data = {
-        name: name.value,
-        description: description.value,
-        date: date.value,
-        time: time.value,
-        place: place.value,
-        category: category.value
-    };
+   const data = {
+    name: document.getElementById("name").value.trim(),
+    description: document.getElementById("description").value.trim(),
+    date: document.getElementById("date").value,
+    time: document.getElementById("time").value,
+    place: document.getElementById("place").value.trim(),
+    category: document.getElementById("category").value.trim()
+};
 
     if(editId === null){
         fetch(API, {
