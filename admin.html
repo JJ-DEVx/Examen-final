@@ -39,6 +39,13 @@
 </div>
 
 <script>
+// 🔐 Autenticación básica (simulada)
+const password = prompt("Ingrese contraseña de administrador:");
+
+if(password !== "admin123"){
+    alert("Acceso denegado");
+    window.location.href = "index.html";
+}
 const API = "https://talleres-api-myx2.onrender.com/workshops";
 let editId = null;
 
