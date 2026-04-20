@@ -15,7 +15,7 @@ Permite a estudiantes visualizar talleres disponibles y registrarse, mientras qu
 
 \## 🌍 Demo en línea
 
-(Al abrir los links esperar de 10 a 20seg para que cargue la informacion predeterminada. Y si gusta añadir talleres en el panel de admin)
+(Al abrir los links esperar de 10 a 20seg para que cargue la informacion predeterminada. Y si gusta añadir, editar o eliminar talleres en el panel de admin)
 
 
 🔗 Página principal (Estudiantes):
