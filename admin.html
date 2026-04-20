@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +9,16 @@
 
 <div class="container mt-4">
 
-    <h1 class="text-center">Panel Administrador</h1>
+    <h1 class="text-center mb-4">Panel Administrador</h1>
 
     <!-- FORMULARIO -->
     <form id="form" class="mb-4">
         <input class="form-control mb-2" id="name" placeholder="Nombre">
-        <input class="form-control mb-2" id="description" placeholder="Descripcion">
+        <input class="form-control mb-2" id="description" placeholder="Descripción">
         <input class="form-control mb-2" id="date" placeholder="Fecha">
         <input class="form-control mb-2" id="time" placeholder="Hora">
         <input class="form-control mb-2" id="place" placeholder="Lugar">
-        <input class="form-control mb-2" id="category" placeholder="Categoria">
+        <input class="form-control mb-2" id="category" placeholder="Categoría">
 
         <button class="btn btn-success w-100">Crear / Actualizar Taller</button>
     </form>
@@ -40,11 +39,10 @@
 </div>
 
 <script>
-
-const API = "http://127.0.0.1:10000/workshops";
+const API = "https://talleres-api-myx2.onrender.com/workshops";
 let editId = null;
 
-// CARGAR TABLA
+// CARGAR
 function cargar(){
     fetch(API)
     .then(res => res.json())
@@ -73,128 +71,7 @@ document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
     const data = {
-        name: document.getElementById("name").value.trim(),
-        description: document.getElementById("description").value.trim(),
-        date: document.getElementById("date").value.trim(),
-        time: document.getElementById("time").value.trim(),
-        place: document.getElementById("place").value.trim(),
-        category: document.getElementById("category").value.trim()
-    };
-
-    if(!data.name){
-        alert("El nombre es obligatorio");
-        return;
-    }
-
-    if(editId === null){
-        fetch(API, {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            alert("Taller creado");
-            document.getElementById("form").reset();
-            cargar();
-        });
-    } else {
-        fetch(API + "/" + editId, {
-            method: "PUT",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(() => {
-            alert("Taller actualizado");
-            editId = null;
-            document.getElementById("form").reset();
-            cargar();
-        });
-    }
-});
-
-// EDITAR
-function editar(id){
-    fetch(API + "/" + id)
-    .then(res => res.json())
-    .then(w => {
-        document.getElementById("name").value = w.name;
-        document.getElementById("description").value = w.description;
-        document.getElementById("date").value = w.date;
-        document.getElementById("time").value = w.time;
-        document.getElementById("place").value = w.place;
-        document.getElementById("category").value = w.category;
-
-        editId = id;
-    });
-}
-
-// ELIMINAR
-function eliminar(id){
-    fetch(API + "/" + id, { method: "DELETE" })
-    .then(() => {
-        alert("Taller eliminado");
-        cargar();
-    });
-}
-
-// INICIAR
-cargar();
-
-</script>
-
-</body>
-=======
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-light">
-
-<div class="container mt-4">
-
-    <h1 class="text-center">Panel Administrador</h1>
-
-    <!-- FORMULARIO -->
-    <form id="form" class="mb-4">
-        <input class="form-control mb-2" id="name" placeholder="Nombre">
-        <input class="form-control mb-2" id="description" placeholder="Descripcion">
-        <input class="form-control mb-2" id="date" placeholder="Fecha">
-        <input class="form-control mb-2" id="time" placeholder="Hora">
-        <input class="form-control mb-2" id="place" placeholder="Lugar">
-        <input class="form-control mb-2" id="category" placeholder="Categoria">
-
-        <button class="btn btn-success w-100">Crear Taller</button>
-    </form>
-
-    <!-- TABLA -->
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th>Lugar</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="tabla"></tbody>
-    </table>
-
-</div>
-
-<script>
-
-const API = "http://127.0.0.1:5000/workshops";
-let editId = null;
-
-// CREAR / ACTUALIZAR
-document.getElementById("form").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const data = {
-        name: document.getElementById("name").value.trim(),
+        name: document.getElementById("name").value,
         description: document.getElementById("description").value,
         date: document.getElementById("date").value,
         time: document.getElementById("time").value,
@@ -228,30 +105,6 @@ document.getElementById("form").addEventListener("submit", function(e){
     }
 });
 
-// CARGAR TABLA
-function cargar(){
-    fetch(API)
-    .then(res => res.json())
-    .then(data => {
-        const tabla = document.getElementById("tabla");
-        tabla.innerHTML = "";
-
-        data.forEach(w => {
-            tabla.innerHTML += `
-            <tr>
-                <td>${w.name}</td>
-                <td>${w.date}</td>
-                <td>${w.place}</td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="editar(${w.id})">Editar</button>
-                    <button class="btn btn-danger btn-sm" onclick="eliminar(${w.id})">Eliminar</button>
-                </td>
-            </tr>
-            `;
-        });
-    });
-}
-
 // EDITAR
 function editar(id){
     fetch(API + "/" + id)
@@ -270,20 +123,16 @@ function editar(id){
 
 // ELIMINAR
 function eliminar(id){
-    fetch(API + "/" + id, {
-        method: "DELETE"
-    })
+    fetch(API + "/" + id, { method: "DELETE" })
     .then(() => {
         alert("Eliminado");
         cargar();
     });
 }
 
-// CARGA INICIAL
+// INICIAR
 cargar();
-
 </script>
 
 </body>
->>>>>>> 56e814f15d8c66ed8a42f98983505eb945d62847
 </html>
