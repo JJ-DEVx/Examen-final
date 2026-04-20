@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 flask
 flask_sqlalchemy
+=======
+flask
+flask_sqlalchemy
+>>>>>>> 56e814f15d8c66ed8a42f98983505eb945d62847
 flask_cors

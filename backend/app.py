@@ -2,11 +2,14 @@ from flask import Flask
 from database import db
 from flask_cors import CORS
 from routes import init_routes
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///workshops.db'
+#  Ruta correcta para Render
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'workshops.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
@@ -16,13 +19,6 @@ with app.app_context():
 
 init_routes(app)
 
-from flask import render_template
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-import os
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
