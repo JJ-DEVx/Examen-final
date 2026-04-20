@@ -41,8 +41,16 @@ def home():
     # 🔹 Crear taller
     @app.route('/workshops', methods=['POST'])
     def create_workshop():
-        data = request.json
-        new = Workshop(**data)
+       data = request.json
+
+new = Workshop(
+    name=data.get("name"),
+    description=data.get("description"),
+    date=data.get("date"),
+    time=data.get("time"),
+    place=data.get("place"),
+    category=data.get("category")
+)
         db.session.add(new)
         db.session.commit()
         return jsonify({"message": "Workshop creado"}), 201
