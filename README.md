@@ -1,89 +1,191 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-\# Workshops App
+\# 🎓 Aplicación de Gestión de Talleres
 
 
 
-\## Cómo ejecutar
+\## 📌 Descripción
 
 
 
-cd backend
+Aplicación web para gestionar talleres de formación profesional.
 
-pip install -r requirements.txt
-
-python app.py
+Permite a estudiantes visualizar talleres disponibles y registrarse, mientras que los administradores pueden crear, editar y eliminar talleres.
 
 
 
-\## Endpoints
+\---
 
 
 
-GET /workshops
-
-POST /workshops
-
-PUT /workshops/{id}
-
-DELETE /workshops/{id}
-
-POST /workshops/{id}/register
+\## 🌍 Demo en línea
 
 
 
-\## Uso
+🔗 Página principal (Estudiantes):
+
+https://jj-devx.github.io/Examen-final/
 
 
 
-Abrir frontend/index.html
+🔗 Panel de administrador:
 
-=======
-# Mi-repositorio-Prog4
-Programación 4
->>>>>>> 628d685c114a7198c02b4a3bb20582afe42c6a53
-=======
-<<<<<<< HEAD
-\# Workshops App
+https://jj-devx.github.io/Examen-final/admin.html
 
 
 
-\## Cómo ejecutar
+🔗 API (Backend):
+
+https://talleres-api-myx2.onrender.com/workshops
 
 
 
-cd backend
-
-pip install -r requirements.txt
-
-python app.py
+\---
 
 
 
-\## Endpoints
+\## ⚙️ Tecnologías utilizadas
 
 
 
-GET /workshops
+\* Backend: Flask (Python)
 
-POST /workshops
+\* Frontend: HTML, CSS, JavaScript
 
-PUT /workshops/{id}
+\* Estilos: Bootstrap
 
-DELETE /workshops/{id}
+\* Base de datos: SQLite
 
-POST /workshops/{id}/register
-
-
-
-\## Uso
+\* Despliegue:
 
 
 
-Abrir frontend/index.html
+&#x20; \* Render (backend)
 
-=======
-# Mi-repositorio-Prog4
-Programación 4
->>>>>>> 628d685c114a7198c02b4a3bb20582afe42c6a53
->>>>>>> 56e814f15d8c66ed8a42f98983505eb945d62847
+&#x20; \* GitHub Pages (frontend)
+
+
+
+\---
+
+
+
+\## 🚀 Funcionalidades
+
+
+
+\### 👨‍🎓 Estudiantes
+
+
+
+\* Ver lista de talleres
+
+\* Ver detalles (fecha, hora, lugar)
+
+\* Registrarse a talleres
+
+
+
+\### 👨‍💼 Administrador
+
+
+
+\* Crear talleres
+
+\* Editar talleres
+
+\* Eliminar talleres
+
+
+
+\---
+
+
+
+\## 🔌 API REST
+
+
+
+\* GET /workshops → Obtener todos los talleres
+
+\* GET /workshops/{id} → Obtener detalles
+
+\* POST /workshops → Crear taller
+
+\* PUT /workshops/{id} → Actualizar taller
+
+\* DELETE /workshops/{id} → Eliminar taller
+
+\* POST /workshops/{id}/register → Registrar estudiante
+
+
+
+\---
+
+
+
+\## ▶️ Ejecución local
+
+
+
+1\. Ir al backend:
+
+&#x20;  cd backend
+
+
+
+2\. Instalar dependencias:
+
+&#x20;  pip install -r requirements.txt
+
+
+
+3\. Ejecutar:
+
+&#x20;  python app.py
+
+
+
+4\. Abrir:
+
+&#x20;  index.html
+
+
+
+\---
+
+
+
+\## 📁 Estructura del proyecto
+
+
+
+backend/ → API y lógica del sistema
+
+index.html → interfaz de estudiantes
+
+admin.html → panel de administración
+
+script.js → lógica del frontend
+
+styles.css → estilos
+
+
+
+\---
+
+
+
+\## 👥 Autor
+
+
+
+Proyecto académico desarrollado para la asignatura de Programación.
+
+
+
+
+
+
+
+
+
+
