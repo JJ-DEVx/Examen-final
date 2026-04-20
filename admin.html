@@ -11,19 +11,17 @@
 
     <h1 class="text-center mb-4">Panel Administrador</h1>
 
-    <!-- FORMULARIO -->
     <form id="form" class="mb-4">
-        <input class="form-control mb-2" id="name" placeholder="Nombre">
-        <input class="form-control mb-2" id="description" placeholder="Descripción">
-        <input class="form-control mb-2" id="date" placeholder="Fecha">
-        <input class="form-control mb-2" id="time" placeholder="Hora">
-        <input class="form-control mb-2" id="place" placeholder="Lugar">
-        <input class="form-control mb-2" id="category" placeholder="Categoría">
+        <input class="form-control mb-2" id="name" placeholder="Nombre" required>
+        <input class="form-control mb-2" id="description" placeholder="Descripción" required>
+        <input class="form-control mb-2" id="date" type="date" required>
+        <input class="form-control mb-2" id="time" type="time" required>
+        <input class="form-control mb-2" id="place" placeholder="Lugar" required>
+        <input class="form-control mb-2" id="category" placeholder="Categoría" required>
 
         <button class="btn btn-success w-100">Crear / Actualizar Taller</button>
     </form>
 
-    <!-- TABLA -->
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -42,7 +40,6 @@
 const API = "https://talleres-api-myx2.onrender.com/workshops";
 let editId = null;
 
-// CARGAR
 function cargar(){
     fetch(API)
     .then(res => res.json())
@@ -66,17 +63,16 @@ function cargar(){
     });
 }
 
-// CREAR / EDITAR
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
     const data = {
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        date: document.getElementById("date").value,
-        time: document.getElementById("time").value,
-        place: document.getElementById("place").value,
-        category: document.getElementById("category").value
+        name: name.value,
+        description: description.value,
+        date: date.value,
+        time: time.value,
+        place: place.value,
+        category: category.value
     };
 
     if(editId === null){
@@ -86,8 +82,8 @@ document.getElementById("form").addEventListener("submit", function(e){
             body: JSON.stringify(data)
         })
         .then(() => {
-            alert("Creado");
-            document.getElementById("form").reset();
+            alert("Taller creado");
+            form.reset();
             cargar();
         });
     } else {
@@ -99,29 +95,27 @@ document.getElementById("form").addEventListener("submit", function(e){
         .then(() => {
             alert("Actualizado");
             editId = null;
-            document.getElementById("form").reset();
+            form.reset();
             cargar();
         });
     }
 });
 
-// EDITAR
 function editar(id){
     fetch(API + "/" + id)
     .then(res => res.json())
     .then(w => {
-        document.getElementById("name").value = w.name;
-        document.getElementById("description").value = w.description;
-        document.getElementById("date").value = w.date;
-        document.getElementById("time").value = w.time;
-        document.getElementById("place").value = w.place;
-        document.getElementById("category").value = w.category;
+        name.value = w.name;
+        description.value = w.description;
+        date.value = w.date;
+        time.value = w.time;
+        place.value = w.place;
+        category.value = w.category;
 
         editId = id;
     });
 }
 
-// ELIMINAR
 function eliminar(id){
     fetch(API + "/" + id, { method: "DELETE" })
     .then(() => {
@@ -130,7 +124,6 @@ function eliminar(id){
     });
 }
 
-// INICIAR
 cargar();
 </script>
 
