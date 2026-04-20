@@ -15,6 +15,7 @@ async function cargar() {
                         <h5>${w.name}</h5>
                         <p>${w.description}</p>
                         <p><b>Fecha:</b> ${w.date}</p>
+                        <p><b>Hora:</b> ${w.time}</p>
                         <p><b>Lugar:</b> ${w.place}</p>
                         <button class="btn btn-primary" onclick="inscribirse(${w.id})">Inscribirse</button>
                     </div>
